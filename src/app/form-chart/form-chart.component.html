@@ -1,0 +1,44 @@
+<!-- <p>form-chart works!</p> -->
+
+<h1 class="bg-primary-subtle text-center p-2">Pie Chart Formation</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Form</h2>
+            <form [formGroup]="formChart" (ngSubmit)="CreateChart(val1.value)">
+                <div class="mb-3">
+                    <label for="val1" class="form-label">First Value</label>
+                    <input type="text" class="form-control w-50" [value]="giv1" #val1 id="val1" formControlName="value1"
+                        (focusout)="checkValue1(val1.value)">
+                    <div class="invalid-feedback d-block"
+                        *ngIf="formChart.get('value1').invalid && formChart.get('value1').touched">
+                        Please enter a number between 1 to 100
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="val2" class="form-label">Second Value</label>
+                    <input type="text" class="form-control w-50" id="val2" formControlName="value2" [value]="giv2" #val2
+                        (focusout)="checkValue2(val2.value)">
+                    <div class="invalid-feedback d-block"
+                        *ngIf="formChart.get('value2').invalid && formChart.get('value2').touched">
+                        Please enter a number between 1 to 100
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary">Create Chart</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <h2>Chart</h2>
+            <div class="p-2 my-3">
+                <div class="d-inline-block me-2" style="width: 20px; height: 20px; background: blue;"></div>
+                <span class="align-baseline">A</span>
+                <div class="d-inline-block ms-4 me-2" style="width: 20px; height: 20px; background: red;"></div>
+                <span class="align-baseline">B</span>
+            </div>
+            
+            <div class="pieChart" ChartDirective [chartValue]="passValue"></div>
+        </div>
+    </div>
+</div>
